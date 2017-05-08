@@ -8,4 +8,4 @@ search for places near **centerLat**, **centerLong**
 ### Other Parameters
 - **token**: access token created from **initWhatNowFacebook** function
 - **search**: pattern to search for in the results' category field
-- **category**: must be one of the following: **EDUCATION, FOOD_BEVERAGE, HOTEL_LODGING, MEDICAL_HEALTH, ARTS_ENTERTAINMENT, SHOPPING_RETAIL, FITNESS_RECREATION, TRAVEL_TRANSPORTATION,** or **all**
+- **category**: must be one of the following: *EDUCATION, FOOD_BEVERAGE, HOTEL_LODGING, MEDICAL_HEALTH, ARTS_ENTERTAINMENT, SHOPPING_RETAIL, FITNESS_RECREATION, TRAVEL_TRANSPORTATION,* or *all*
