@@ -44,7 +44,7 @@ whatNowFacebook <- function(token, search = "", category = "", centerLat = 55.61
 	}
 }
 
-whatNowForecast <- function(centerLat = 55.6184978, centerLong = 12.645085, datestr = "", justForcast ) {
+whatNowForecast <- function(centerLat = 55.6184978, centerLong = 12.645085, datestr = "") {
 	
 	data <- xmlParse(paste0("http://api.met.no/weatherapi/locationforecast/1.9/?lat=", centerLat, ";", "lon=", centerLong))
 	
