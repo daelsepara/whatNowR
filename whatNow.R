@@ -40,6 +40,7 @@ whatNowFacebook <- function(token, search = "", category = "", centerLat = 55.61
 	}
 	
 	if (length(jsonData) > 0) {
+		
 		invisible(toJSON(jsonData))
 	}
 }
@@ -49,8 +50,6 @@ whatNowForecast <- function(centerLat = 55.6184978, centerLong = 12.645085, date
 	data <- xmlParse(paste0("http://api.met.no/weatherapi/locationforecast/1.9/?lat=", centerLat, ";", "lon=", centerLong))
 	
 	xml_data <- xmlToList(data)
-	
-	count = 0
 	
 	jsonData = list()
 	
@@ -65,6 +64,7 @@ whatNowForecast <- function(centerLat = 55.6184978, centerLong = 12.645085, date
 					jsonData <- append(jsonData, addForecastMetaData(xml_data$product[[i]], centerLong, centerLat))
 					
 				}
+				
 			} else {
 				
 				jsonData <- append(jsonData, addForecastMetaData(xml_data$product[[i]], centerLong, centerLat))
@@ -88,33 +88,6 @@ addForecastMetaData <- function(item = list(), centerLong, centerLat) {
 		metadata = c(metadata, item$location$symbol["id"])
 		
 		return(list(metadata))
-}
-
-initWhatNowFacebook <- function(app) {
-
-	if (is.null(app) || !is.list(app)) {
-		
-		stop("Need to setup OAuth")
-		
-	} else {
-		
-		fb_oauth <- fbOAuth(app$id, app$secret, extended_permissions = TRUE)
-		
-		invisible(fb_oauth)
-	}
-	
-}
-
-initWhatNowTwitter <- function(app) {
-	
-	if (is.null(app) || !is.list(app)) {
-		
-		stop("Need to setup OAuth")
-		
-	} else {
-		
-		setup_twitter_oauth(consumer_key = app$key, consumer_secret = app$secret, access_token = app$token, access_secret = app$token_secret)
-	}
 }
 
 whatNowTweet <- function(search = "") {
@@ -141,5 +114,32 @@ whatNowTweet <- function(search = "") {
 	if (length(jsonData) > 0) {
 		
 		invisible(toJSON(jsonData))
+	}
+}
+
+initWhatNowFacebook <- function(app) {
+
+	if (is.null(app) || !is.list(app)) {
+		
+		stop("Need to setup OAuth")
+		
+	} else {
+		
+		fb_oauth <- fbOAuth(app$id, app$secret, extended_permissions = TRUE)
+		
+		invisible(fb_oauth)
+	}
+	
+}
+
+initWhatNowTwitter <- function(app) {
+	
+	if (is.null(app) || !is.list(app)) {
+		
+		stop("Need to setup OAuth")
+		
+	} else {
+		
+		setup_twitter_oauth(consumer_key = app$key, consumer_secret = app$secret, access_token = app$token, access_secret = app$token_secret)
 	}
 }
