@@ -7,6 +7,7 @@ whatNowFacebook <- function(token, search = "", category = "", centerLat = 55.61
 	categories = "\"EDUCATION\",\"FOOD_BEVERAGE\",\"HOTEL_LODGING\",\"MEDICAL_HEALTH\",\"ARTS_ENTERTAINMENT\",\"SHOPPING_RETAIL\",\"FITNESS_RECREATION\",\"TRAVEL_TRANSPORTATION\""
 	
 	if (nchar(category) > 0 && !grepl("all", category, ignore.case = TRUE)) {
+		
 		categories = paste0("\"",category,"\"")
 	}
 	
@@ -21,6 +22,7 @@ whatNowFacebook <- function(token, search = "", category = "", centerLat = 55.61
 		if (nchar(search) <= 1 || grepl("all", category, ignore.case = TRUE) || (nchar(thisCategory) > 0 && grepl(search, thisCategory, ignore.case = TRUE))) {
 			
 			metadata = list()
+			
 			metadata$name = trimws(fromFB$data[[i]]$name)
 			
 			if ("about" %in% names(fromFB$data[[i]])) {
@@ -82,6 +84,7 @@ whatNowForecast <- function(centerLat = 55.6184978, centerLong = 12.645085, date
 addForecastMetaData <- function(item = list(), centerLong, centerLat) {
 		
 		metadata = list()
+		
 		metadata = c(metadata, long = centerLong, lat = centerLat)
 		metadata = c(metadata, item$.attrs["from"])
 		metadata = c(metadata, item$.attrs["to"])
@@ -92,9 +95,9 @@ addForecastMetaData <- function(item = list(), centerLong, centerLat) {
 
 whatNowTweet <- function(search = "") {
 
-	jsonData = list()
-
 	result = searchTwitter(search)
+	
+	jsonData = list()
 
 	if (length(result) > 0) {
 		
